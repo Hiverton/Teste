@@ -48,7 +48,7 @@ export default class Todo extends Component {
 
     handleRemove(todo){
         axios.delete(`${URL}/${todo._id}`)
-            .then(res => this.refresh())
+            .then(res => this.refresh(this.state.description))
             .catch(err => console.log(err))
     }
 
@@ -60,7 +60,10 @@ export default class Todo extends Component {
         const description = this.state.description
         console.log(`iniciou insert ${description}`)
         axios.post(URL, {description})
-            .then(res => this.refresh())
+            .then(res => {
+                    this.refresh(this.state.description) 
+                    console.log(res
+            )})
             .catch(err => console.log(err))
     }
 
